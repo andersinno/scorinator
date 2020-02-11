@@ -19,7 +19,7 @@
 
     <script type="text/javascript">
         function showhide() {
-            if (document.getElementById("addition-row").style.display == "flex") {
+            if (document.getElementById("addition-row").style.display === "flex") {
                 document.getElementById("addition-row").style.display = "none"
             } else {
                 document.getElementById("addition-row").style.display = "flex"
@@ -52,65 +52,28 @@
                   <h3>Score</h3>
               </div>
             </div>
-            <div class="row">
+
+            {% for player in players %}
+            {% if forloop.counter|divisibleby:2 != 0 %}
+                <div class="row text-white bg-secondary">
+            {% else %}
+                <div class="row ">
+            {% endif %}
               <div class="col-2">
-                1
+                {{forloop.counter}}
               </div>
               <div class="col-6">
-                Jan
+                {{player.name}}
               </div>
               <div class="col-4">
-                10
+                {{player.score}}
               </div>
             </div>
-            <div class="row text-white bg-dark">
-                  <div class="col-2">
-                    2
-                  </div>
-                <div class="col-6">
-                    Rob
-                </div>
-                <div class="col-4">
-                    9
-                </div>
-            </div>
-            <div class="row">
-              <div class="col-2">
-                3
-              </div>
-                <div class="col-6">
-                    Juila
-                </div>
-                <div class="col-4">
-                    8
-                </div>
-            </div>
-            <div class="row text-white bg-dark">
-              <div class="col-2">
-                4
-              </div>
-                <div class="col-6">
-                    Lauri
-                </div>
-                <div class="col-4">
-                    7
-                </div>
-            </div>
-            <div class="row">
-              <div class="col-2">
-                5
-              </div>
-                <div class="col-6">
-                    William
-                </div>
-                <div class="col-4">
-                    6
-                </div>
-            </div>
+            {% endfor %}
+
+            <hr/>
             <div id="addition-row" class="row" style="display: flex">
-              <div class="col-2">
-                  6
-              </div>
+              <div class="col-2"></div>
                     <div class="col-6">
                         <form action="/add" method="post">
                           {% csrf_token %}
