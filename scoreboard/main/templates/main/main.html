@@ -17,12 +17,30 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
+    <script type="text/javascript">
+        function showhide() {
+            if (document.getElementById("addition-row").style.display == "flex") {
+                document.getElementById("addition-row").style.display = "none"
+            } else {
+                document.getElementById("addition-row").style.display = "flex"
+            }
+
+        }
+    </script>
 </head>
 <body>
         <!-- jQuery CDN - Slim version (=without AJAX) -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
-        <h1>The score bord</h1>
+        <div class="row">
+            <div class="col-8">
+                <h1>The score bord</h1>
+            </div>
+            <div class="col-4" style="vertical-align: middle">
+                <button onclick="showhide()">Toggle!</button>
+            </div>
+
+        </div>
 
         <div class="container-fluid">
             <div class="row text-white bg-dark">
@@ -89,7 +107,7 @@
                     6
                 </div>
             </div>
-            <div class="row">
+            <div id="addition-row" class="row" style="display: flex">
               <div class="col-2">
                   6
               </div>
@@ -106,6 +124,11 @@
             </div>
         </div>
 
+        <div class="filt-btns">
+          <a class="btn btn-dark" href="/sort-acc">Accending</a>
+          <a class="btn btn-dark" href="/sort-dec">Decending</a>
+        </div>
+      
         <!-- Popper.JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
         <!-- Bootstrap JS -->
