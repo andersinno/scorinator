@@ -22,7 +22,8 @@ def addEntry(request):
 
     return redirect('home')
 
+
 def delPlayer(request):
     if request.method == 'POST':
-        Player.object.get().delete()
+        Player(id=request.POST['player_id']).delete()
     return redirect('home')
