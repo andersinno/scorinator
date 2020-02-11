@@ -10,6 +10,9 @@
 
     <title>Score</title>
 
+    <!-- Source for keyboard events -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
+
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    <!-- Our Custom CSS -->
 
@@ -17,20 +20,23 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
-        function showhide() {
-            if (document.getElementById("addition-row").style.display === "flex") {
-                document.getElementById("addition-row").style.display = "none"
-            } else {
-                document.getElementById("addition-row").style.display = "flex"
-            }
-
-        }
-    </script>
 </head>
 <body>
         <!-- jQuery CDN - Slim version (=without AJAX) -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            function showhide() {
+                if (document.getElementById("addition-row").style.display === "flex") {
+                    document.getElementById("addition-row").style.display = "none"
+                } else {
+                    document.getElementById("addition-row").style.display = "flex"
+                }
+            }
+
+            Mousetrap.bind('e', function(e) {
+                showhide();
+            });
+        </script>
 
         <div class='row'>
           <div class="col-12">
@@ -43,13 +49,9 @@
         </div>
 
         <div class="row">
-            <div class="col-8">
-                <h1>The score bord</h1>
+            <div class="col-12">
+                <h1>The scoreboard</h1>
             </div>
-            <div class="col-4" style="vertical-align: middle">
-                <button onclick="showhide()">Toggle!</button>
-            </div>
-
         </div>
 
         <div class="container-fluid">
@@ -58,7 +60,7 @@
               <div class="col-6">
                   <h3>Name</h3>
               </div>
-              <div class="col4">
+              <div class="col-4">
                   <h3>Score</h3>
               </div>
             </div>
@@ -81,8 +83,8 @@
               </div>
             {% endfor %}
 
-            <hr/>
             <div id="addition-row" class="row" style="display: flex">
+            <hr/>
               <div class="col-2"></div>
                     <div class="col-6">
                         <form action="/add" method="post">
