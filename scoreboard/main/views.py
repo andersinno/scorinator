@@ -1,15 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import AddPlayer
-
+from .models import Player
 # Create your views here.
 
 
 def home(request):
-    return render(request, "main/main.html")
+    toHTML = {
+        'players': Player.objects.all().order_by('score')
+    }
+    return render(request, "main/main.html", toHTML)
 
 
 def addEntry(request):
     if request.method == 'POST':
-        print(request.POST)
-
-    return render(request, "main/main.html")
+        Player(name=request.POST['name'], score=request.POST['score']).save()
+    return redirect('home')
