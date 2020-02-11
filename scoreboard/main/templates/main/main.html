@@ -32,6 +32,25 @@
                 } else {
                     document.getElementById("addition-row").style.display = "flex"
                 }
+
+                var divs = document.getElementsByClassName("button-delete");
+                if (divs[0].style.display === "block") {
+                    for(var i = 0; i < divs.length; i++) {
+                        divs[i].style.display = "none";
+                    }
+                } else {
+                    for(var i = 0; i < divs.length; i++) {
+                        divs[i].style.display = "block";
+                    }
+                }
+                //     [].slice.call( divs ).forEach(function ( div ) {
+                //         div.style.display = "none";
+                //     };
+                // } else {
+                //     [].slice.call( divs ).forEach(function ( div ) {
+                //         div.style.display = "block";
+                //     };
+                // }
             }
 
             Mousetrap.bind('e', function(e) {
@@ -68,8 +87,15 @@
                 <div class="col-6">
                   {{player.name}}
                 </div>
-                <div class="col-4">
+                <div class="col-2">
                   {{player.score}}
+                </div>
+                <div class="col-2 button-delete" style="display: block">
+                    <form action="/del" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="player_id" value={{player.id}}>
+                        <input type="submit" value="Delete">
+                    </form>
                 </div>
               </div>
             {% endfor %}
