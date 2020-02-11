@@ -16,3 +16,8 @@ def addEntry(request):
     if request.method == 'POST':
         Player(name=request.POST['name'], score=request.POST['score']).save()
     return redirect('home')
+
+def delPlayer(request):
+    if request.method == 'POST':
+        Player.object.get().delete()
+    return redirect('home')
