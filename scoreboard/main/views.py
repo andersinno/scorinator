@@ -21,3 +21,8 @@ def addEntry(request):
             messages.warning(request, f'The score is to high')
 
     return redirect('home')
+
+def delPlayer(request):
+    if request.method == 'POST':
+        Player.object.get().delete()
+    return redirect('home')
