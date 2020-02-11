@@ -6,7 +6,8 @@ from .models import Player
 
 def home(request):
     toHTML = {
-        'players': Player.objects.all().order_by('score')
+        'players': Player.objects.all().order_by('-score'),
+        'form': AddPlayer()
     }
     return render(request, "main/main.html", toHTML)
 
