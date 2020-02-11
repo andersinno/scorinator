@@ -18,3 +18,4 @@ local_settings.py
 .vscode
 fullstackpy/palvelin/migrations
 __init__.py
+/venv/
