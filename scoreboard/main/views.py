@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .forms import AddPlayer
 from .models import Player
 # Create your views here.
@@ -14,5 +15,9 @@ def home(request):
 
 def addEntry(request):
     if request.method == 'POST':
-        Player(name=request.POST['name'], score=request.POST['score']).save()
+        if not int(request.POST['score']) > 9223372036854775807:
+            Player(name=request.POST['name'], score=request.POST['score']).save()
+        else:
+            messages.warning(request, f'The score is to high')
+
     return redirect('home')
