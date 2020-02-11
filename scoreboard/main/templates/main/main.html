@@ -24,7 +24,6 @@
 <body>
         <!-- jQuery CDN - Slim version (=without AJAX) -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-
         <script type="text/javascript">
             function showhide() {
                 if (document.getElementById("addition-row").style.display === "flex") {
@@ -57,6 +56,16 @@
                 showhide();
             });
         </script>
+
+        <div class='row'>
+          <div class="col-12">
+          {% for massage in messages %}
+            <div class="alert alert-{{ massage.tags }} text-center">
+              {{ massage }}
+            </div>
+          {% endfor %}
+          </div>
+        </div>
 
         <div class="row">
             <div class="col-12">
